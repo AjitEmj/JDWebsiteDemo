@@ -1,0 +1,258 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>JD Store Test</title>
+  <link rel="stylesheet" href="jdhometest.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+</head>
+<body>
+  
+
+  <nav class="navbar">
+    <img src="logojd.jpg" alt="Floating Logo" class="floating-image">
+    <a href="index.html" class="nav-item">
+      <i class="fas fa-home"></i>
+      <span class="nav-text">Home</span>
+    </a>
+    <a href="#" class="nav-item">
+      <i class="fas fa-user"></i>
+      <span class="nav-text">Profile</span>
+    </a>
+    <a href="#" class="nav-item">
+      <i class="fas fa-envelope"></i>
+      <span class="nav-text">Message</span>
+    </a>
+    <a href="JDCart.html" class="nav-item">
+      <i class="fas fa-shopping-cart"></i>
+      <span id="floating-cart-count">0</span>
+      <span class="nav-text">Cart</span>
+    </a> 
+    <a href="JDWishlist.html" class="nav-item">
+     <i class="fas fa-heart"></i>
+      <span id="floating-wishlist-count">0</span>
+     <span class="nav-text">Wishlist</span>
+   </a>
+
+    <a href="#" class="nav-item">
+      <i class="fas fa-cog"></i>
+      <span class="nav-text">Settings</span>
+    </a>
+
+  </nav>
+
+
+
+  <!-- Modal Structure -->
+<div id="quickViewModal" class="modal">
+  <span class="close">&times;</span>
+  <img class="modal-content" id="modalImage">
+</div>
+
+<!--- product card  ----->
+<!--<h1> Love in every detail, beauty in every cards</h1>-->
+
+
+
+
+<div class="product-card_container">
+  <!-- Card 1 -->
+  <div class="product-card">
+    <div class="image-wrapper">
+     <img src="wed1.jpg" alt="Product Image" style="width:100%">
+     <span class="wishlist"><i class="fas fa-heart"></i></span>
+    </div>
+    <h3 class="product_title">Product 1</h3>
+    <p>Rs. 229</p>
+    <div class="product_card-button">
+      <button class="btn cart-btn">Add to Cart</button>
+      <button class="btn quick-btn">Quick View</button>
+    </div>
+  </div>
+
+  <!-- Card 2 -->
+  <div class="product-card">
+    <div class="image-wrapper">
+     <img src="wed5.jpg" alt="Product Image" style="width:100%">
+     <span class="wishlist"><i class="fas fa-heart"></i></span>
+    </div>
+     <h3 class="product_title">Product 2</h3>
+    <p>Rs. 339</p>
+    <div class="product_card-button">
+      <button class="btn cart-btn">Add to Cart</button>
+      <button class="btn quick-btn">Quick View</button>
+    </div>
+  </div>
+
+  <!-- Card 3 -->
+  <div class="product-card">
+    <div class="image-wrapper">
+     <img src="wed4.jpg" alt="Product Image" style="width:100%">
+     <span class="wishlist"><i class="fas fa-heart"></i></span>
+     </div>
+    <h3 class="product_title">Product 3</h3>
+    <p>Rs. 119</p>
+    <div class="product_card-button">
+      <button class="btn cart-btn">Add to Cart</button>
+      <button class="btn quick-btn">Quick View</button>
+    </div>
+  </div>
+
+
+    <!-- Card 4 -->
+  <div class="product-card">
+    <div class="image-wrapper">
+     <img src="photo3.png" alt="Product Image" style="width:100%">
+     <span class="wishlist"><i class="fas fa-heart"></i></span>
+    </div>
+    <h3 class="product_title">Product 4</h3>
+    <p>Rs. 269</p>
+    <div class="product_card-button">
+      <button class="btn cart-btn">Add to Cart</button>
+      <button class="btn quick-btn">Quick View</button>
+    </div>
+  </div>
+
+  <!-- Card 5 -->
+  <div class="product-card">
+    <div class="image-wrapper">
+     <img src="wed5.jpg" alt="Product Image" style="width:100%">
+     <span class="wishlist"><i class="fas fa-heart"></i></span>
+    </div>
+     <h3 class="product_title">Product 5</h3>
+    <p>Rs. 299</p>
+    <div class="product_card-button">
+      <button class="btn cart-btn">Add to Cart</button>
+      <button class="btn quick-btn">Quick View</button>
+    </div>
+  </div>
+
+  <!-- Card 6 -->
+  <div class="product-card">
+    <div class="image-wrapper">
+     <img src="wed4.jpg" alt="Product Image" style="width:100%">
+     <span class="wishlist"><i class="fas fa-heart"></i></span>
+     </div>
+    <h3 class="product_title">Product 6</h3>
+    <p>Rs. 119</p>
+    <div class="product_card-button">
+      <button class="btn cart-btn">Add to Cart</button>
+      <button class="btn quick-btn">Quick View</button>
+    </div>
+  </div>
+
+</div>
+
+<!-- Floating Wishlist Count Card -->
+<div id="floating-wishlist-card">
+  <i class="fas fa-heart"></i>
+  <span id="floating-wishlist-count">0</span>
+</div>
+
+<!-- Floating Cart Count Card -->
+<div id="floating-cart-card">
+  <i class="fas fa-shopping-cart"></i>
+  <span id="floating-cart-count">0</span>
+</div>
+
+
+<script>
+  // Get modal elements
+  const modal = document.getElementById("quickViewModal");
+  const modalImg = document.getElementById("modalImage");
+  const closeBtn = document.getElementsByClassName("close")[0];
+
+  // Attach click handlers to all Quick View buttons
+  document.querySelectorAll(".quick-btn").forEach((button, index) => {
+    button.addEventListener("click", function () {
+      const card = button.closest(".product-card");
+      const imgSrc = card.querySelector("img").src;
+      modal.style.display = "block";
+      modalImg.src = imgSrc;
+    });
+  });
+
+  // Close modal on click of "X"
+  closeBtn.onclick = function () {
+    modal.style.display = "none";
+  }
+
+  // Close modal on outside click
+  window.onclick = function (event) {
+    if (event.target === modal) {
+      modal.style.display = "none";
+    }
+  }
+</script>
+
+
+
+<!----Cart and wishlist count badge-->
+<script>
+  document.addEventListener("DOMContentLoaded", function () {
+    const wishlistIcons = document.querySelectorAll(".wishlist");
+    const floatingWishlistCount = document.getElementById("floating-wishlist-count");
+
+    const cartButtons = document.querySelectorAll(".cart-btn");
+    const floatingCartCount = document.getElementById("floating-cart-count");
+
+
+    let cartCount = 0;
+
+    // Toggle wishlist heart
+    wishlistIcons.forEach(icon => {
+      icon.addEventListener("click", function () {
+        this.classList.toggle("active");
+        const iconElement = this.querySelector("i");
+        iconElement.classList.toggle("far");
+        iconElement.classList.toggle("fas");
+        updateFloatingWishlistCount();
+      });
+    });
+
+    function updateFloatingWishlistCount() {
+      const count = document.querySelectorAll(".wishlist.active").length;
+      floatingWishlistCount.textContent = count;
+    }
+
+    // Add to Cart functionality
+    cartButtons.forEach(button => {
+      button.addEventListener("click", function () {
+        cartCount++;
+        floatingCartCount.textContent = cartCount;
+      });
+    });
+  });
+</script>
+
+<!-------  display selected cart on icon click----->
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+      const cartButtons = document.querySelectorAll(".cart-btn");
+
+      cartButtons.forEach((btn) => {
+        btn.addEventListener("click", function () {
+          const productCard = btn.closest(".product-card");
+          const title = productCard.querySelector(".product_title").innerText;
+          const price = productCard.querySelector("p").innerText;
+          const imgSrc = productCard.querySelector("img").src;
+
+          const product = { title, price, imgSrc };
+
+          // get cart from localStorage
+          let cart = JSON.parse(localStorage.getItem("cart")) || [];
+          cart.push(product);
+          localStorage.setItem("cart", JSON.stringify(cart));
+
+          alert(title + " added to cart!");
+        });
+      });
+    });
+  </script>
+
+
+
+
+
+</body>
+</html>

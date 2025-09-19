@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Profile Sidebar Login</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <style>
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+    }
+
+    /* Navbar */
+    .navbar {
+      background-color: #111;
+      padding: 15px 20px;
+      display: flex;
+      align-items: center;
+      color: #fff;
+    }
+
+    .navbar img.floating-image {
+      height: 40px;
+      margin-right: auto;
+    }
+
+    .nav-item {
+      color: #ccc;
+      text-decoration: none;
+      margin-left: 20px;
+      font-size: 16px;
+      display: flex;
+      align-items: center;
+    }
+
+    .nav-item i {
+      margin-right: 6px;
+    }
+
+    .nav-item:hover {
+      color: #fff;
+    }
+
+    /* Sidebar */
+    .sidebar {
+      position: fixed;
+      top: 0;
+      right: -400px;
+      width: 350px;
+      height: 100%;
+      background: #fff;
+      box-shadow: -2px 0 10px rgba(0, 0, 0, 0.2);
+      padding: 30px;
+      transition: right 0.3s ease-in-out;
+      z-index: 999;
+    }
+
+    .sidebar.active {
+      right: 0;
+    }
+
+    .sidebar h2 {
+      margin-bottom: 20px;
+      color: #111;
+      text-align: center;
+    }
+
+    .form-group {
+      margin-bottom: 15px;
+    }
+
+    .form-group input {
+      width: 100%;
+      padding: 10px;
+      font-size: 15px;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+    }
+
+    .form-group button {
+      width: 100%;
+      padding: 12px;
+      background: #111;
+      color: #fff;
+      border: none;
+      font-size: 16px;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+
+    .form-group button:hover {
+      background: #444;
+    }
+
+    .form-toggle {
+      text-align: center;
+      margin-top: 15px;
+    }
+
+    .form-toggle a {
+      color: #007bff;
+      text-decoration: none;
+      cursor: pointer;
+    }
+
+    .close-btn {
+      position: absolute;
+      top: 15px;
+      right: 15px;
+      font-size: 20px;
+      cursor: pointer;
+      color: #333;
+    }
+
+    .hidden {
+      display: none;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- NAVIGATION BAR -->
+  <nav class="navbar">
+    <img src="logojd.jpg" alt="Floating Logo" class="floating-image">
+    <a href="#" class="nav-item">
+      <i class="fas fa-home"></i>
+      <span class="nav-text">Home</span>
+    </a>
+    <a href="#" class="nav-item" id="profileBtn">
+      <i class="fas fa-user"></i>
+      <span class="nav-text">Profile</span>
+    </a>
+  </nav>
+
+  <!-- SIDEBAR -->
+  <div class="sidebar" id="sidebar">
+    <span class="close-btn" id="closeSidebar">&times;</span>
+
+    <!-- Login Form -->
+    <div id="loginForm">
+      <h2>Login</h2>
+      <div class="form-group">
+        <input type="email" placeholder="Email" required />
+      </div>
+      <div class="form-group">
+        <input type="password" placeholder="Password" required />
+      </div>
+      <div class="form-group">
+        <button>Login</button>
+      </div>
+      <div class="form-toggle">
+        New here? <a id="showSignup">Sign Up</a>
+      </div>
+    </div>
+
+    <!-- Signup Form -->
+    <div id="signupForm" class="hidden">
+      <h2>Sign Up</h2>
+      <div class="form-group">
+        <input type="text" placeholder="Full Name" required />
+      </div>
+      <div class="form-group">
+        <input type="email" placeholder="Email" required />
+      </div>
+      <div class="form-group">
+        <input type="password" placeholder="Password" required />
+      </div>
+      <div class="form-group">
+        <button>Register</button>
+      </div>
+      <div class="form-toggle">
+        Already a user? <a id="showLogin">Login</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- JS TO TOGGLE SIDEBAR AND FORMS -->
+  <script>
+    const profileBtn = document.getElementById("profileBtn");
+    const sidebar = document.getElementById("sidebar");
+    const closeSidebar = document.getElementById("closeSidebar");
+
+    const loginForm = document.getElementById("loginForm");
+    const signupForm = document.getElementById("signupForm");
+    const showSignup = document.getElementById("showSignup");
+    const showLogin = document.getElementById("showLogin");
+
+    profileBtn.addEventListener("click", () => {
+      sidebar.classList.add("active");
+    });
+
+    closeSidebar.addEventListener("click", () => {
+      sidebar.classList.remove("active");
+    });
+
+    showSignup.addEventListener("click", () => {
+      loginForm.classList.add("hidden");
+      signupForm.classList.remove("hidden");
+    });
+
+    showLogin.addEventListener("click", () => {
+      signupForm.classList.add("hidden");
+      loginForm.classList.remove("hidden");
+    });
+  </script>
+
+</body>
+</html>
